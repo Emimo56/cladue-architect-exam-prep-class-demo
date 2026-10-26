@@ -1,0 +1,22 @@
+name: Markdown-only check
+
+on:
+  pull_request:
+    branches: [master]
+  push:
+    branches: [master]
+
+jobs:
+  check-markdown-only:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fail on non-Markdown files
+        run: |
+          bad_files=$(git ls-files | grep -vE '\.md$|^\.gitignore$|^LICENSE$|^\.github/')
+          if [ -n "$bad_files" ]; then
+            echo "Non-Markdown files found:"
+            echo "$bad_files"
+            exit 1
+          fi
