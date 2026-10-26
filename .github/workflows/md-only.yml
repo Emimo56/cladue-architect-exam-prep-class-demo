@@ -2,9 +2,9 @@ name: Markdown-only check
 
 on:
   pull_request:
-    branches: [master]
+    branches: [main]
   push:
-    branches: [master]
+    branches: [main]
 
 jobs:
   check-markdown-only:
