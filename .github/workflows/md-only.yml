@@ -14,7 +14,7 @@ jobs:
 
       - name: Fail on non-Markdown files
         run: |
-          bad_files=$(git ls-files | grep -vE '\.md$|^\.gitignore$|^LICENSE$|^\.github/')
+          bad_files=$(git ls-files | grep -vE '\.md$|^\.gitignore$|^LICENSE$|^\.github/' || true)
           if [ -n "$bad_files" ]; then
             echo "Non-Markdown files found:"
             echo "$bad_files"
